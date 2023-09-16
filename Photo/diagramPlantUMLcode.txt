@@ -1,0 +1,31 @@
+@startuml
+[*] --> Welcome
+
+Welcome --> User : Login
+
+User --> Menu : Successful Login
+
+Menu --> Donor
+Menu --> SearchBloodDonor
+Menu --> Stock
+Menu --> DeleteDonor
+Menu --> Exit
+
+Donor --> AddNew
+Donor --> UpdateDetails
+Donor --> AllDonorDetails
+
+SearchBloodDonor --> Location
+SearchBloodDonor --> BloodGroup
+
+Stock --> Increase
+Stock  --> Decrease
+Stock  --> Details
+
+DeleteDonor --> Delete
+
+Exit --> LogOut
+Exit --> ExitApplication
+
+LogOut --> Welcome : Logout
+@enduml
