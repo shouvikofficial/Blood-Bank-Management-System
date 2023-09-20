@@ -264,12 +264,11 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         try{
             Connection conn = ConnectionProvider.getCon();
             Statement st = conn.createStatement();
-            st.executeUpdate("update  donor set name ='"+name+"',fatherName = '"+fatherName+"',motherName= '"+motherName+"',DOB = '"+DOB+"',MobileBo = '"+MobileNo+"',gender = '"+gender+"',email='"+email+"',bloodGroup='"+bloodGroup+"',city='"+city+"',address = '"+address+"' where donorId = '"+donorId+"'");
+            st.executeUpdate("update donor set name ='"+name+"',fatherName = '"+fatherName+"',motherName= '"+motherName+"',DOB = '"+DOB+"',MobileBo = '"+MobileNo+"',gender = '"+gender+"',email='"+email+"',bloodGroup='"+bloodGroup+"',city='"+city+"',address = '"+address+"' where donorId = '"+donorId+"'");
             JOptionPane.showMessageDialog(null,"Successfully Updated");
             setVisible(false);
             new updateDetailsDonor().setVisible(true);
-         }
-        
+         }       
         catch(Exception e){
            JOptionPane.showMessageDialog(null,"Connection Error!"); 
         }

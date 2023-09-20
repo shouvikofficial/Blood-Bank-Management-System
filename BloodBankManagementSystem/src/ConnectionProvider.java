@@ -1,6 +1,4 @@
 
-
-
 import Project.*;
 import java.sql.*;
 import java.sql.DriverManager;

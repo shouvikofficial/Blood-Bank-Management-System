@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-
+import java.sql.*;
+import Project.ConnectionProvider;
 import javax.swing.JOptionPane;
 
 /**
@@ -95,13 +96,33 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField1.getText().equals("blood") && jPasswordField1.getText().equals("admin"))
+       /* if(jTextField1.getText().equals("blood") && jPasswordField1.getText().equals("admin"))
         {
             setVisible(false);
             new home().setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(null,"Incorrect Username or Password");
+        }*/
+       String userName = jTextField1.getText();
+       String pass = jPasswordField1.getText();
+       try{
+           Connection conn = ConnectionProvider.getCon();
+           Statement st = conn.createStatement();
+           ResultSet rs = st.executeQuery("select * from login where userName = '"+userName+"' and pass ='"+pass+"'");
+          
+           if(rs.next())
+           {
+              setVisible(false);
+              new home().setVisible(true);
+           }else
+               
+           JOptionPane.showMessageDialog(null,"Incorrect Username or Password");
+        }
+        catch(Exception e)
+        {
+          //JOptionPane.showMessageDialog(null,e);
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -116,6 +137,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
