@@ -203,3 +203,41 @@ public class UserLogin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+//same account  
+
+/*public boolean checkUsername(String u) {
+
+        boolean userExists = false;
+
+        try {
+            String check = "SELECT * FROM users ORDER BY user_Name desc";
+
+            pst = conn.prepareStatement(check);
+
+            rs = pst.executeQuery();
+
+            String usernamePool;
+
+            if (rs.next()) {
+                usernamePool = rs.getString("user_Name");//column name
+                if (usernamePool.equals(u)) {
+                    userExists = true;
+                }
+                if (userExists = true) {
+                    JOptionPane.showMessageDialog(null, "Username already in use", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+
+        return userExists;
+
+    }
+
+*/

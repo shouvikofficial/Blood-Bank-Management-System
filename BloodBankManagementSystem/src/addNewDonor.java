@@ -5,7 +5,10 @@
 
 import java.sql.*;
 import Project.ConnectionProvider;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 /**
  *
@@ -58,6 +61,7 @@ public class addNewDonor extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +124,11 @@ public class addNewDonor extends javax.swing.JFrame {
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 261, 162, -1));
 
         jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField4KeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 303, 162, -1));
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -143,6 +152,11 @@ public class addNewDonor extends javax.swing.JFrame {
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 263, -1, -1));
 
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
+            }
+        });
         getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 123, 162, -1));
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -170,7 +184,7 @@ public class addNewDonor extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 431, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Update details.png"))); // NOI18N
@@ -180,7 +194,7 @@ public class addNewDonor extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 431, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Exit application.png"))); // NOI18N
@@ -190,10 +204,14 @@ public class addNewDonor extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 431, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
+
+        jLabel15.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+        jLabel14.setText("jLabel14");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -245,8 +263,11 @@ public class addNewDonor extends javax.swing.JFrame {
         String bloodGroup =  (String) jComboBox2.getSelectedItem();
         String city = jTextField6.getText();
         String address = jTextArea1.getText();
-        
-        try{
+        if(name.equals("")|| fatherName.equals("")||motherName.equals("")|| DOB.equals("")|| MobileNo.equals("")|| gender.equals("")|| email.equals("")|| bloodGroup.equals("")|| city.equals("")|| address.equals(""))
+            JOptionPane.showMessageDialog(null,"Every Field Is Required!");
+        else{
+            if(MobileNo.length()==11){
+            try{
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
             st.executeUpdate("Insert into donor value('"+donorId+"','"+name+"','"+fatherName+"','"+motherName+"','"+DOB+"','"+MobileNo+"','"+gender+"','"+email+"','"+bloodGroup+"','"+city+"','"+address+"')");
@@ -258,7 +279,46 @@ public class addNewDonor extends javax.swing.JFrame {
         catch(Exception e){
            JOptionPane.showMessageDialog(null,e); 
         }
+        }else{
+            JOptionPane.showMessageDialog(null,"Number must be 11");
+        }
+        }
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
+        // TODO add your handling code here:
+        String mobileNum = jTextField4.getText();
+        int length = mobileNum.length();
+        char c = evt.getKeyChar();
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            if(length<=10){
+                jTextField4.setEditable(true);
+            }else{
+                jTextField4.setEditable(false);
+            }
+        }else{
+            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                jTextField4.setEditable(true);
+            }else{
+                jTextField4.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_jTextField4KeyPressed
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        // TODO add your handling code here:
+        String PATTERN = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9.-]+$" ;
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(jTextField5.getText());
+        if(!match.matches()){
+            jLabel15.setText("Worng Format!");   
+        }else{
+            jLabel15.setText(null);
+        }
+    }//GEN-LAST:event_jTextField5KeyReleased
 
     /**
      * @param args the command line arguments
@@ -308,6 +368,7 @@ public class addNewDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

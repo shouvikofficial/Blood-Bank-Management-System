@@ -119,6 +119,8 @@ public class UserRegister extends javax.swing.JFrame {
       String userName=jTextField1.getText();
       String pass= jPasswordField4.getText();
       String conPass= jPasswordField1.getText();
+      
+      
       if(userName.equals("")|| pass.equals(""))
             JOptionPane.showMessageDialog(null,"Every Field Is Required!");
       else{
@@ -126,21 +128,23 @@ public class UserRegister extends javax.swing.JFrame {
               try{
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            st.executeUpdate("Insert into userLogin value('"+userName+"','"+pass+"','"+conPass+"')");
-            JOptionPane.showMessageDialog(null,"Successfully Signup");
-            setVisible(false);
-            new UserLogin().setVisible(true);
+            ResultSet rs = st.executeQuery("select * from userLogin where userName = '"+userName+"' and pass ='"+pass+"'");
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null,"Already have an account");  
+            }else{
+                st.executeUpdate("Insert into userLogin value('"+userName+"','"+pass+"','"+conPass+"')");
+                    JOptionPane.showMessageDialog(null,"Successfully Signup");
+                    setVisible(false);
+                    new UserLogin().setVisible(true);
+            } 
          }
-        
         catch(Exception e){
            JOptionPane.showMessageDialog(null,e); 
         }
       }else{
            JOptionPane.showMessageDialog(null,"Confirm password doesnot match!");   
       }
-    }
-           
-      
+    }         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
