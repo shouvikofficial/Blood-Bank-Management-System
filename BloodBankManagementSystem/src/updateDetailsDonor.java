@@ -1,5 +1,8 @@
 import java.sql.*;
 import Project.ConnectionProvider;
+import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /*
@@ -60,7 +63,8 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(340, 130));
@@ -79,6 +83,11 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 100, -1));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -131,6 +140,11 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 146, -1));
 
         jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField6KeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 146, -1));
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -153,10 +167,15 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, -1, -1));
 
         jTextField8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField8KeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 146, -1));
 
         jTextField9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 146, -1));
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 146, -1));
 
         jTextField10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 146, -1));
@@ -201,8 +220,12 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 436, -1, -1));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
+        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, -1, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
+        jLabel15.setText("jLabel15");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -261,6 +284,9 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         String bloodGroup =  jTextField9.getText(); 
         String city = jTextField10.getText();
         String address = jTextArea1.getText();
+        if(name.equals("")|| fatherName.equals("")||motherName.equals("")|| DOB.equals("")|| MobileNo.equals("")|| gender.equals("")|| email.equals("")|| bloodGroup.equals("")|| city.equals("")|| address.equals(""))
+            JOptionPane.showMessageDialog(null,"Don't found any change!");
+        else{
         try{
             Connection conn = ConnectionProvider.getCon();
             Statement st = conn.createStatement();
@@ -272,7 +298,61 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         catch(Exception e){
            JOptionPane.showMessageDialog(null,"Connection Error!"); 
         }
+    }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyPressed
+        // TODO add your handling code here:
+        String mobileNum = jTextField6.getText();
+        int length = mobileNum.length();
+        char c = evt.getKeyChar();
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            if(length<=10){
+                jTextField6.setEditable(true);
+            }else{
+                jTextField6.setEditable(false);
+            }
+        }else{
+            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                jTextField6.setEditable(true);
+            }else{
+                jTextField6.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_jTextField6KeyPressed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+        String donarId = jTextField1.getText();
+        int length = donarId.length();
+        char c = evt.getKeyChar();
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            if(length<=100){
+                jTextField1.setEditable(true);
+            }else{
+                jTextField1.setEditable(false);
+            }
+        }else{
+            if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+                jTextField1.setEditable(true);
+            }else{
+                jTextField1.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyPressed
+        // TODO add your handling code here:
+        String PATTERN = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9.-]+$" ;
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(jTextField8.getText());
+        if(!match.matches()){
+            jLabel14.setText("Worng Format!");   
+        }else{
+            jLabel14.setText(null);
+        }
+    }//GEN-LAST:event_jTextField8KeyPressed
 
     /**
      * @param args the command line arguments
@@ -318,7 +398,8 @@ public class updateDetailsDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

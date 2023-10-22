@@ -163,6 +163,11 @@ public class home extends javax.swing.JFrame {
         jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
         jMenuItem10.setText("Delete Donar");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuBar1.add(jMenu4);
@@ -218,7 +223,7 @@ public class home extends javax.swing.JFrame {
         int a = JOptionPane.showConfirmDialog(null,"Do you really want to close Application?","Select",JOptionPane.YES_NO_OPTION);
         if(a==0){
             setVisible(false);
-            new Login().setVisible(true);
+            new UserorAdmin().setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
@@ -251,6 +256,11 @@ public class home extends javax.swing.JFrame {
         // TODO add your handling code here:
         new searchBloodDonarGroup().setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        new deleteDonor().setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments

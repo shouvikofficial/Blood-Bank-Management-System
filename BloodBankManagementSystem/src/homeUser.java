@@ -157,7 +157,7 @@ public class homeUser extends javax.swing.JFrame {
         int a = JOptionPane.showConfirmDialog(null,"Do you really want to Logout?","Select",JOptionPane.YES_NO_OPTION);
         if(a==0){
             setVisible(false);
-            new UserLogin().setVisible(true);
+            new UserorAdmin().setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 

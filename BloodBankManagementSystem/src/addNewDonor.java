@@ -62,6 +62,7 @@ public class addNewDonor extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -209,6 +210,9 @@ public class addNewDonor extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 0, 0));
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, -1));
 
+        jLabel16.setForeground(new java.awt.Color(255, 0, 51));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, -1));
+
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
         jLabel14.setText("jLabel14");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
@@ -293,6 +297,11 @@ public class addNewDonor extends javax.swing.JFrame {
         String mobileNum = jTextField4.getText();
         int length = mobileNum.length();
         char c = evt.getKeyChar();
+        if(length<11){
+            jLabel16.setText("Number must be 11");
+        }else{
+            jLabel16.setText(null);
+        }
         if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
             if(length<=10){
                 jTextField4.setEditable(true);
@@ -369,6 +378,7 @@ public class addNewDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
