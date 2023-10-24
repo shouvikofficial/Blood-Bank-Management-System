@@ -96,7 +96,7 @@
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/login.png"/>
+          <Image iconType="3" name="/image/login.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Sign Up"/>
       </Properties>
@@ -115,7 +115,7 @@
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Exit application.png"/>
+          <Image iconType="3" name="/image/Exit application.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Close"/>
       </Properties>
@@ -194,10 +194,18 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/login background final.PNG"/>
+          <Image iconType="3" name="/image/login background final.PNG"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
